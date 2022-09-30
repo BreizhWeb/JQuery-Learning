@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>TP JQuery 1 / Menu</title>
+	
+	<style>
+		/* style de la balise <body> */
+		body {
+			margin: 10px;
+			font: 0.8em Arial, Helvetica, sans-serif;
+		}
+		/* style des éléments possédant la classe "menu" */
+		.menu {
+			width: 200px;
+		}
+		/* style des éléments possédant la classe "" */
+		.menu_chapitre {
+			padding: 5px;
+			cursor: pointer;
+			position: relative; 
+			margin: 1px; 
+			font-weight: bold; 
+			background: #9cf; 
+			border: 1px solid black;
+		}
+		/* style des liens <a> placés dans des éléments possédant la classe "" */
+		.menu_point a {
+			display: block;
+			color: black;
+			background-color: white;
+			padding-left: 30px;
+			text-decoration: none;
+		}
+		/* style au survol des liens <a> placés dans des éléments possédant la classe "menu_point" */
+		.menu_point a : hover {
+			color: black;
+			text-decoration: underline;
+		}
+	</style>
+
+	<script src="../scripts/jquery-3.4.1.js"></script>	
+	
+	<script>
+		// la fonction initialisations s'exécutera quand le document sera "ready"
+		$(document).ready (initialisations);
+					
+		function initialisations() {
+			// commencer par masquer les <div> de classe "menu_point"
+			$("div.menu_point").hide();
+			// la fonction gestionClicMenu s'exécutera lors d'un clic sur un paragraphe <p> de classe "menu_chapitre"
+			$("p.menu_chapitre").click (gestionClicMenu);
+		}
+			
+		function gestionClicMenu() {
+			// (this) représente le paragraphe cliqué ; de là, on sélectionne la prochaine <div> de classe "menu_point"
+			// et on la fait apparaître avec un effet de glissement vers le bas (slideDown) de durée 300 ms
+			$(this).next("div.menu_point").slideDown(300);
+			// à partir de cette <div>, on sélectionne toutes les <div> voisines (siblings) de classe "menu_point"
+			// et on les referme avec un effet de glissement lent ("slow") vers le haut (slideUp)
+			$(this).next("div.menu_point").siblings("div.menu_point").siblings("div.menu_point").slideUp("slow");
+		}
+</script>
+
+</head>
+
+<body>
+	<div>
+		<h3>Outils et langages de développement</h3>
+		<div class="menu">
+			<p class="menu_chapitre">Applications Windows</p>
+			<div class="menu_point">
+				<a href="#">MS Visual Basic.net</a>
+				<a href="#">MS Visual C#</a>
+				<a href="#">Java</a>
+			</div>
+			<p class="menu_chapitre">Applications web (serveur)</p>
+			<div class="menu_point">
+				<a href="#">PHP</a>
+				<a href="#">MS ASP.net</a>
+				<a href="#">JSP</a>
+			</div>
+			<p class="menu_chapitre">Applications web (client)</p>
+			<div class="menu_point">
+				<a href="#">JavaScript</a>
+				<a href="#">JQuery</a>
+				<a href="#">JQuery Mobile</a>
+			</div>
+			<p class="menu_chapitre">Applications mobiles natives</p>
+			<div class="menu_point">
+				<a href="#">Android</a>
+				<a href="#">IOS</a>
+				<a href="#">Windows Phone</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
